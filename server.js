@@ -61,6 +61,21 @@ app.get('/', (req, res) => {
 // controllers
 app.use('/users', require('./controllers/users'))
 
+// 404 error handler -- NEEDS TO GO LAST
+app.use((req, res, next) => {
+  //render a 404 template
+  res.status(404).render('404.ejs')
+})
+
+//500 error handler
+//needs to have all 4 parameters
+app.use((error, req, res, next) => {
+  //log the error
+  console.log(error)
+  // send a 500 error template
+  res.status(500).render('500.ejs')
+})
+
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
   rowdyRes.print()

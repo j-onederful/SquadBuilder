@@ -11,7 +11,7 @@ router.get('/new', (req,res) => {
 
 
 // POST /users --creates a new user and redirects to index
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
     try {
         //try to create the user
         //hash password
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
             res.render('users/new.ejs', {msg: 'email already taken, idiot'})
         }
     } catch(err) {
-        console.log(err)
+        next(err)
     }
 })
 
@@ -48,7 +48,7 @@ router.get('/login', (req, res) => {
 
 
 // POST /users/login -- authenticates user credentials against the database
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
     try {
         //look up the user in the db based on their email
         const foundUser = await db.user.findOne({
@@ -76,7 +76,7 @@ router.post('/login', async (req, res) => {
             res.render('users/login.ejs', {msg})
         }
     } catch (err) {
-        console.log(err)
+        next(err)
     }
 })
 
