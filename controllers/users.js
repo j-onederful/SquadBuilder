@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const db = require ('../models')
+const cryptoJS = require('crypto-js')
+const bcrypt = require('bcryptjs')
 
 // GET /users/new -- renders a form to create a new user
 router.get('/new', (req,res) => {
@@ -12,20 +14,21 @@ router.get('/new', (req,res) => {
 router.post('/', async (req, res) => {
     try {
         //try to create the user
-        //TODO: hash password
+        //hash password
+        const hashedPassword = bcrypt.hashSync(req.body.password, 12)
         const [user, created] = await db.user.findOrCreate({
             where: { email: req.body.email},
-            defaults: { password: req.body.password}
+            defaults: { password: hashedPassword }
         })
 
         // if the user is new
         if (created) {
             //log them in by giving them cookie
             // res.cookie('cookie name', cookie data)
-            //TODO: encrypt id
-            res.cookie('userId', user.id)
+            const encryptedId = cryptoJS.AES.encrypt(user.id.toString(), process.env.ENC_KEY).toString()
+            res.cookie('userId', encryptedId)
             //redirect to the homepage (in the future this could redirect elsewhere)
-            res.redirect('/')
+            res.redirect('/users/profile')
         } else {
             //if the user was not created
             //re render the login form with a message for the user
@@ -61,11 +64,13 @@ router.post('/login', async (req, res) => {
         
         //otherwise, check the provided password against the password in the database
         //hash the password from the req.boy and compare it to the db password
-        if (foundUser.password === req.body.password) {
+        const compare = bcrypt.compareSync(req.body.password, foundUser.password)
+        if (compare) {
             //if they match -- send the user a cookie! to log them in 
-            res.cookie('userId', foundUser.id)
+            const encryptedId = cryptoJS.AES.encrypt(foundUser.id.toString(), process.env.ENC_KEY).toString()
+            res.cookie('userId', encryptedId)
             //TODO: redirect to profile
-            res.redirect('/')
+            res.redirect('/users/profile')
         } else {
             // if not -- render the login form with a message
             res.render('users/login.ejs', {msg})
@@ -82,6 +87,17 @@ router.get('/logout', (req, res) => {
     res.clearCookie('userId')
     //redirect to root
     res.redirect('/')
+})
+
+router.get('/profile', (req, res) => {
+    //check if user is authorized
+    if (!res.locals.user) {
+        //if user is not authorized ask them to log in
+        res.render('users/login.ejs', { msg: 'gotta login little guy'})
+        return // end the route here
+    }
+
+    res.render('users/profile', {user: res.locals.user})
 })
 
 
