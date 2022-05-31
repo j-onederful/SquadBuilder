@@ -18,7 +18,9 @@ router.post('/', async (req, res, next) => {
         const hashedPassword = bcrypt.hashSync(req.body.password, 12)
         const [user, created] = await db.user.findOrCreate({
             where: { email: req.body.email},
-            defaults: { password: hashedPassword }
+            defaults: { password: hashedPassword,
+                        teamName: req.body.teamName
+             }
         })
 
         // if the user is new
@@ -28,7 +30,7 @@ router.post('/', async (req, res, next) => {
             const encryptedId = cryptoJS.AES.encrypt(user.id.toString(), process.env.ENC_KEY).toString()
             res.cookie('userId', encryptedId)
             //redirect to the homepage (in the future this could redirect elsewhere)
-            res.redirect('/users/profile')
+            res.redirect('/users/yourSquad')
         } else {
             //if the user was not created
             //re render the login form with a message for the user
@@ -69,8 +71,8 @@ router.post('/login', async (req, res, next) => {
             //if they match -- send the user a cookie! to log them in 
             const encryptedId = cryptoJS.AES.encrypt(foundUser.id.toString(), process.env.ENC_KEY).toString()
             res.cookie('userId', encryptedId)
-            //TODO: redirect to profile
-            res.redirect('/users/profile')
+            //TODO: redirect to yourSquad
+            res.redirect('/users/yourSquad')
         } else {
             // if not -- render the login form with a message
             res.render('users/login.ejs', {msg})
@@ -89,7 +91,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
-router.get('/profile', (req, res) => {
+router.get('/yourSquad', (req, res) => {
     //check if user is authorized
     if (!res.locals.user) {
         //if user is not authorized ask them to log in
@@ -97,7 +99,7 @@ router.get('/profile', (req, res) => {
         return // end the route here
     }
 
-    res.render('users/profile', {user: res.locals.user})
+    res.render('users/yourSquad', {user: res.locals.user})
 })
 
 

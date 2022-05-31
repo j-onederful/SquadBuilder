@@ -47,13 +47,15 @@
  | POST | */users/* | Create (Create) | creates new user and redirects to yourSquad page |
  | GET | */users/logout* | Show (Read) | clears the cookie to log user out |
  | GET | */users/yourSquad* | Show (Read) | renders yourSquad page |
- | POST | */players* | Create(Create) | creates new player on your team (like favorite) |
- | DELETE | */players/:id* | Destroy (Delete) | deletes the player with the specified id from your team (i.e. /players/1) | 
- | GET | */players/:id* | Show (Read) | shows a specific player profile page (has a form that POSTS to /players, creates new player in db) |
+ | PUT | */users/yourSquad* | Update (Update) | update your squad name | 
  | GET | */users/:id* | Show (Read) | renders otherTeam page |
  | GET | */users/:id/comment/new* | New (Read) | shows a form to make a new comment |
  | POST | */users/:id/comment* | Create (Create) | creates a comment with the POST payload(form) data |
- | PUT | */users/yourSquad* | Update (Update) | update your squad name | 
+ | GET | */players* | Create(Create) | renders a form that lets user search ballIsLife API |
+ | GET | */players/search* | Show (Read | takes a search from the user and renders the results for them to see |
+ | POST | */players* | Create(Create) | creates new player on your team (like favorite) |
+ | DELETE | */players/:id* | Destroy (Delete) | deletes the player with the specified id from your team (i.e. /players/1) | 
+ | GET | */players/:id* | Show (Read) | shows a specific player profile page (has a form that POSTS to /players, creates new player in db) |
 
  ### MVP
  ---
