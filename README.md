@@ -49,7 +49,7 @@
  | GET | */users/yourSquad* | Show (Read) | renders yourSquad page |
  | POST | */players* | Create(Create) | creates new player on your team (like favorite) |
  | DELETE | */players/:id* | Destroy (Delete) | deletes the player with the specified id from your team (i.e. /players/1) | 
- | GET | */players/details* | Show (Read) | shows a specific player profile page (has a form that POSTS to /players, creates new player in db) |
+ | GET | */players/:id* | Show (Read) | shows a specific player profile page (has a form that POSTS to /players, creates new player in db) |
  | GET | */users/:id* | Show (Read) | renders otherTeam page |
  | GET | */users/:id/comment/new* | New (Read) | shows a form to make a new comment |
  | POST | */users/:id/comment* | Create (Create) | creates a comment with the POST payload(form) data |
