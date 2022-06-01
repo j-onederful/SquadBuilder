@@ -4,6 +4,7 @@ const express = require('express')
 const rowdy = require('rowdy-logger')
 const cookieParser = require('cookie-parser')
 const db = require('./models')
+const methodOverride = require('method-override')
 const cryptoJS = require('crypto-js')
 
 // app config
@@ -16,6 +17,7 @@ const rowdyRes = rowdy.begin(app)
 app.use(require('express-ejs-layouts'))
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(methodOverride('_method'))
 
 //DIY middleware
 // happens on every request

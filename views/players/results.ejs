@@ -1,0 +1,15 @@
+<h1>Search Results for <%= input %></h1>
+<%players.forEach(player => { %>
+   <div>
+       <h2 id="playerName"><%= player.first_name %> <%= player.last_name %></h2>
+       <p><%= player.team.full_name%></p>
+       <p>Position: <%= player.position%></p>
+       <form method="POST" action="/players">
+            <input hidden type="text" name="firstName" value="<%= player.first_name%>">
+            <input hidden type="text" name="lastName" value="<%= player.last_name%>">
+            <input hidden type="text" name="teamName" value="<%= player.team.full_name%>">
+            <input hidden type="text" name="position" value="<%= player.position%>">
+            <button type="submit">Add to Your Squad</button>
+       </form>
+   </div>
+<% }) %>
