@@ -91,15 +91,20 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
-router.get('/yourSquad', (req, res) => {
+router.get('/yourSquad', async (req, res) => {
     //check if user is authorized
     if (!res.locals.user) {
         //if user is not authorized ask them to log in
         res.render('users/login.ejs', { msg: 'gotta login little guy'})
         return // end the route here
     }
-
-    res.render('users/yourSquad', {user: res.locals.user})
+    const userSquad = await db.player.findAll({
+        where: {
+            userId: res.locals.user.id
+        }
+    })
+    console.log(userSquad)
+    res.render('users/yourSquad', {user: res.locals.user, userSquad})
 })
 
 
