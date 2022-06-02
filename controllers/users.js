@@ -109,7 +109,7 @@ router.get('/yourSquad', async (req, res) => {
 })
 
 //GET - shows list of other user's teams
-router.get('/otherSquads', async (req,res) => {
+router.get('/', async (req,res) => {
     try {
         // get all teamNames from user db
         const allTeamNames = await db.user.findAll()
@@ -123,7 +123,7 @@ router.get('/otherSquads', async (req,res) => {
 })
 
 // GET - shows individual users team when their teamName clicked on in users/otherSquads 
-router.get('/otherSquads/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const userSquad = await db.player.findAll({
         where: {
             userId: req.params.id
@@ -132,6 +132,23 @@ router.get('/otherSquads/:id', async (req, res) => {
     console.log(userSquad)
     res.render('users/rivalTeam.ejs', {userSquad})
 })
+
+// POST - adds new comment with content and name to database with what was entered into form on rivalTeam.ejs
+router.post('/:id/comment', async (req, res) => {
+    try {
+        const[comment, created] = await db.comment.findOrCreate({
+            where: {
+                content: req.body.content,
+                name: req.body.name,
+                userId: res.locals.user.id
+            }
+        })
+        console.log(comment, 'TESTER MY G')
+        res.redirect('/users/:id')
+    } catch (err) {
+        console.warn(err)
+    }
+}) 
 
 // PUT - update users teamName
 router.put('/yourSquad', async (req, res) => {

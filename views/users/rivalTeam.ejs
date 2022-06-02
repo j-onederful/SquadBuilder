@@ -6,3 +6,18 @@
         <p>Position: <%= player.position%></p>
     </div>
  <% }) %>
+
+ <div class="comment-section">
+     <!-- this is where comments go -->
+     
+     <!-- form to add new comment -->
+     <form method="POST" action="/users/<%=user.id%>/comment">
+        <label for="content">Let this user know your thoughts:</label>
+        <input id="content" type="text" name="content" placeholder="enter comment here" />
+
+        <label for ="name">Your Name:</label>
+        <input id="name" type="text" name="name" placeholder="enter name here" />
+
+        <button type="submit">Post Your Comment!</button>
+     </form>
+ </div>

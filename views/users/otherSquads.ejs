@@ -2,6 +2,6 @@
 
 <ul>
     <%allTeamNames.forEach(user => { %>
-        <li><a href="/users/otherSquads/<%=user.id%>"><%=user.teamName%></a></li>
+        <li><a href="/users/<%=user.id%>"><%=user.teamName%></a></li>
    <% }) %>
 </ul>
