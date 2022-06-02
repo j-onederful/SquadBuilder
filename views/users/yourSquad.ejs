@@ -1,8 +1,8 @@
 <h2>Team <%=user.teamName%> ready to rock!</h2>
-<button type="submit">Update Your Squad Name</button>
-<form hidden method="PUT" action="/users/yourSquad/<%=user.id%>?_method=PUT">
+<!-- <button type="submit">Update Your Squad Name</button> -->
+<form method="POST" action="/users/yourSquad?_method=PUT">
     <label for="update">New Name Here:</label>
-    <input id="update" type="text" name="teamName" />
+    <input id="update" type="text" name="teamName" placeholder="enter your new team name here" />
     <input type="submit"/>
 </form>
 

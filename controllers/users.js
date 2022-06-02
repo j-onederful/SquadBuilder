@@ -108,16 +108,14 @@ router.get('/yourSquad', async (req, res) => {
     res.render('users/yourSquad', {user: res.locals.user, userSquad})
 })
 
-// GET
 
 // PUT - update users teamName
 router.put('/yourSquad', async (req, res) => {
-    const updateName = await db.user.findByPk(req.params.id)
+    const updateName = await db.user.findByPk(res.locals.user.id)
     updateName.teamName = req.body.teamName
-    updateName.email = req.body.email
-    updateName.password = req.body.password
     await updateName.save()
     console.log(updateName)
+    res.redirect("/users/yourSquad")
 })
 
 module.exports = router
