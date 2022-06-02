@@ -98,6 +98,7 @@ router.get('/yourSquad', async (req, res) => {
         res.render('users/login.ejs', { msg: 'gotta login little guy'})
         return // end the route here
     }
+    //make favorited player list appear on your squad page
     const userSquad = await db.player.findAll({
         where: {
             userId: res.locals.user.id
@@ -107,5 +108,16 @@ router.get('/yourSquad', async (req, res) => {
     res.render('users/yourSquad', {user: res.locals.user, userSquad})
 })
 
+// GET
+
+// PUT - update users teamName
+router.put('/yourSquad', async (req, res) => {
+    const updateName = await db.user.findByPk(req.params.id)
+    updateName.teamName = req.body.teamName
+    updateName.email = req.body.email
+    updateName.password = req.body.password
+    await updateName.save()
+    console.log(updateName)
+})
 
 module.exports = router
