@@ -116,10 +116,21 @@ router.get('/otherSquads', async (req,res) => {
         res.render('users/otherSquads.ejs', { allTeamNames })
         //render otherSquads page (list of other user's team names)
 
-        // NOTE: RENDERING SQUAD NAMES BUT your team name is showing as well
+        // NOTE: RENDERING SQUAD NAMES BUT your team name is showing as well (look into sequelize query methods to exclude where current id)
     } catch (err) {
         console.warn(err)
     }
+})
+
+// GET - shows individual users team when their teamName clicked on in users/otherSquads 
+router.get('/otherSquads/:id', async (req, res) => {
+    const userSquad = await db.player.findAll({
+        where: {
+            userId: req.params.id
+        }
+    })
+    console.log(userSquad)
+    res.render('users/rivalTeam.ejs', {userSquad})
 })
 
 // PUT - update users teamName
