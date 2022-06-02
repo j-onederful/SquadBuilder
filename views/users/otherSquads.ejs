@@ -1,0 +1,7 @@
+<h2>Your Rivals Below</h2>
+
+<ul>
+    <%allTeamNames.forEach(user => { %>
+        <li><a href="/users/otherSquads/<%=user.teamName%>"><%=user.teamName%></a></li>
+   <% }) %>
+</ul>

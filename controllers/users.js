@@ -108,6 +108,19 @@ router.get('/yourSquad', async (req, res) => {
     res.render('users/yourSquad', {user: res.locals.user, userSquad})
 })
 
+//GET - shows list of other user's teams
+router.get('/otherSquads', async (req,res) => {
+    try {
+        // get all teamNames from user db
+        const allTeamNames = await db.user.findAll()
+        res.render('users/otherSquads.ejs', { allTeamNames })
+        //render otherSquads page (list of other user's team names)
+
+        // NOTE: RENDERING SQUAD NAMES BUT your team name is showing as well
+    } catch (err) {
+        console.warn(err)
+    }
+})
 
 // PUT - update users teamName
 router.put('/yourSquad', async (req, res) => {
