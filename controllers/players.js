@@ -48,10 +48,10 @@ router.post('/', async (req, res) => {
     } catch(err) {
       console.warn(err)
     }
-  })
+})
 
 
-  router.delete('/:id', async (req, res) =>{
+router.delete('/:id', async (req, res) =>{
     try {
         const delPlayer = await db.player.findByPk(req.params.id)
         await delPlayer.destroy()
@@ -62,11 +62,18 @@ router.post('/', async (req, res) => {
 })
 
 
-    // try {
-    //     const delPlayer = await db.player.findOne(req.params.id)
-    //     await delPlayer.destroy()
-    // }   
-    // delPlayer()
-
+async function deleteBronKobeKawhi(){
+    try {
+        const instance = await db.player.findOne({
+            where: {
+                firstName: 'Kobe'
+            }
+        })
+        await instance.destroy()
+    } catch (err) {
+        console.warn(err)
+    }
+}
+deleteBronKobeKawhi()
 
 module.exports = router
