@@ -62,18 +62,5 @@ router.delete('/:id', async (req, res) =>{
 })
 
 
-async function deleteBronKobeKawhi(){
-    try {
-        const instance = await db.player.findOne({
-            where: {
-                firstName: 'Kobe'
-            }
-        })
-        await instance.destroy()
-    } catch (err) {
-        console.warn(err)
-    }
-}
-deleteBronKobeKawhi()
 
 module.exports = router
