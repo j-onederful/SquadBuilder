@@ -51,18 +51,22 @@ router.post('/', async (req, res) => {
   })
 
 
-// GET /players -return a page with favorited players
-// router.get('/:id', async (req, res) => {
-//     const playerFromDb = await db.players.findAll()
-//     console.log(playerFromDb)
-//     res.send('favorites')
-// })
-
-// POST /players - receive the name of a player and add it to the database
-router.post('/:id', (req, res) => {
-
-    res.send(req.body)
+  router.delete('/:id', async (req, res) =>{
+    try {
+        const delPlayer = await db.player.findByPk(req.params.id)
+        await delPlayer.destroy()
+        res.redirect("/users/yourSquad")
+    } catch (err) {
+        console.warn(err)
+    }
 })
+
+
+    // try {
+    //     const delPlayer = await db.player.findOne(req.params.id)
+    //     await delPlayer.destroy()
+    // }   
+    // delPlayer()
 
 
 module.exports = router

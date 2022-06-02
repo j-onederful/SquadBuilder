@@ -108,5 +108,4 @@ router.get('/yourSquad', async (req, res) => {
 })
 
 
-
 module.exports = router

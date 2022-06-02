@@ -1,18 +1,14 @@
-<h2>User Profile</h2>
+<h2>Your Squad</h2>
 
 <h3>Here is your Squad, <%=user.email%>!</h3>
 <!-- need to link user.teamName in controller-->
 
 <%userSquad.forEach(player => { %>
     <div>
-        <h2 id="playerName"><%= player.firstName %> <%= player.lastName %></h2>
+        <h2><%= player.firstName %> <%= player.lastName %></h2>
         <p><%= player.team%></p>
         <p>Position: <%= player.position%></p>
-        <form method="POST" action="/players?_method=DELETE">
-             <input hidden type="text" name="firstName" value="<%= player.first_name%>">
-             <input hidden type="text" name="lastName" value="<%= player.last_name%>">
-             <input hidden type="text" name="teamName" value="<%= player.team.full_name%>">
-             <input hidden type="text" name="position" value="<%= player.position%>">
+        <form method="POST" action="/players/<%=player.id%>?_method=DELETE">
              <button type="submit">Delete from Your Squad</button>
         </form>
     </div>
