@@ -104,8 +104,9 @@ router.get('/yourSquad', async (req, res) => {
             userId: res.locals.user.id
         }
     })
-    console.log(userSquad)
-    res.render('users/yourSquad', {user: res.locals.user, userSquad})
+    const comments = await res.locals.user.getComments()
+    console.log(comments, "HERE I AM!!!!!")
+    res.render('users/yourSquad', {user: res.locals.user, userSquad, comments})
 })
 
 //GET - shows list of other user's teams
@@ -129,22 +130,27 @@ router.get('/:id', async (req, res) => {
             userId: req.params.id
         }
     })
+    const comments = await db.comment.findAll({
+        where: {
+            userId: req.params.id
+        }
+    })
     console.log(userSquad)
-    res.render('users/rivalTeam.ejs', {userSquad})
+    res.render('users/rivalTeam.ejs', {userSquad, comments})
 })
 
 // POST - adds new comment with content and name to database with what was entered into form on rivalTeam.ejs
 router.post('/:id/comment', async (req, res) => {
     try {
-        const[comment, created] = await db.comment.findOrCreate({
+        const[newComment, created] = await db.comment.findOrCreate({
             where: {
                 content: req.body.content,
                 name: req.body.name,
-                userId: res.locals.user.id
+                userId: req.params.id
             }
         })
-        console.log(comment, 'TESTER MY G')
-        res.redirect('/users/:id')
+        console.log(newComment, 'TESTER MY G')
+        res.redirect(`/users/${req.params.id}`)
     } catch (err) {
         console.warn(err)
     }

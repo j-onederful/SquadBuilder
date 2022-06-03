@@ -16,4 +16,11 @@
              <button type="submit">Delete from Your Squad</button>
         </form>
     </div>
+<% }) %>
+
+<%comments.forEach(comment => { %>
+    <div>
+        <h4><%= comment.content %> </h4>
+        <p><%= comment.name%></p>
+    </div>
  <% }) %>

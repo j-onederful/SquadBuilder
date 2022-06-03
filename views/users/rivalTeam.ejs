@@ -9,7 +9,12 @@
 
  <div class="comment-section">
      <!-- this is where comments go -->
-     
+     <%comments.forEach(comment => { %>
+        <div>
+            <h4><%= comment.content %> </h4>
+            <p><%= comment.name%></p>
+        </div>
+     <% }) %>
      <!-- form to add new comment -->
      <form method="POST" action="/users/<%=user.id%>/comment">
         <label for="content">Let this user know your thoughts:</label>
