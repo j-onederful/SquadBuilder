@@ -136,11 +136,13 @@ router.get('/:id', async (req, res) => {
         }
     })
     console.log(userSquad)
-    res.render('users/rivalTeam.ejs', {userSquad, comments})
+    res.render('users/rivalTeam.ejs', {userSquad, comments, rivalId: req.params.id})
 })
 
 // POST - adds new comment with content and name to database with what was entered into form on rivalTeam.ejs
 router.post('/:id/comment', async (req, res) => {
+    console.log('current user', res.locals.user.id)
+    console.log('rival user', req.params.id)
     try {
         const[newComment, created] = await db.comment.findOrCreate({
             where: {
