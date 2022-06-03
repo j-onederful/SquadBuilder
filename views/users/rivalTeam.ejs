@@ -12,15 +12,15 @@
      <%comments.forEach(comment => { %>
         <div>
             <h4><%= comment.content %> </h4>
-            <p><%= comment.name%></p>
+            <p> -Team <%= comment.name%></p>
         </div>
      <% }) %>
      <!-- form to add new comment -->
      <form method="POST" action="/users/<%=rivalId%>/comment">
-        <label for="content">Let this user know your thoughts:</label>
+        <label for="content">Talk Some Shit:</label>
         <input id="content" type="text" name="content" placeholder="enter comment here" />
 
-        <label for ="name">Your Name:</label>
+        <label for ="name">Enter Your Team Name Here:</label>
         <input id="name" type="text" name="name" placeholder="enter name here" />
 
         <button type="submit">Post Your Comment!</button>
