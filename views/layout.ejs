@@ -8,35 +8,22 @@
 </head>
 <body>
   <nav>
-    <ul>
       <% if (user) { %>
         <!-- if the user is logged in -->
-        <li>
-          <a href="/users/yourSquad">Your Squad</a>
-        </li>
-
-        <li>
-          <a href="/users/logout">Logout</a>
-        </li>
+        <h1>SquadBuilder</h1>
+        <a href="/users/yourSquad">Your Squad</a>
+        <a href="/users/">See Other Squads</a>
+        <a href="/players/">Search For Players</a>
+        <a href="/users/logout">Logout</a>
       <% } else { %>
         <!-- if the user is not logged in -->
-        <li>
-          <a href="/users/new">Sign Up</a>
-        </li>
-       
-        <li>
-          <a href="/users/login">Login</a>
-        </li>
+        <a href="/users/new">Sign Up</a>
+        <a href="/users/login">Login</a>
       <% } %>
-     
-      
-     
-
-    </ul>
   </nav>
   
   <main>
-    <h1>SquadBuilder</h1>
+    
     <%- body %> 
   </main>
   
