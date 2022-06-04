@@ -81,6 +81,7 @@
  * https://phoenixnap.com/kb/mysql-drop-table#:~:text=To%20permanently%20remove%20a%20table,the%20table%20has%20been%20removed.
  * https://sequelize.org/docs/v6/core-concepts/model-instances/
  * https://hackmd.io/XWYZzYFLSIi3QVk05bdqtg?view
+ * https://www.mysqltutorial.org/mysql-delete-statement.aspx
  * RESTful creatures assignment
  * Sequelize intro
  * Pokedex assignment

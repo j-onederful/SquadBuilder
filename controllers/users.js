@@ -135,8 +135,13 @@ router.get('/:id', async (req, res) => {
             userId: req.params.id
         }
     })
-    console.log(userSquad)
-    res.render('users/rivalTeam.ejs', {userSquad, comments, rivalId: req.params.id})
+    const rivalName = await db.user.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+    console.log(userSquad, "RIGHT HUR")
+    res.render('users/rivalTeam.ejs', {userSquad, comments, rivalName, rivalId: req.params.id,})
 })
 
 // POST - adds new comment with content and name to database with what was entered into form on rivalTeam.ejs
