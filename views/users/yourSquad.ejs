@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="../css/style.css"/>
-<h2>Team <%=user.teamName%> ready to rock!</h2>
+<h2>Team <%=user.teamName%> </h2>
 <!-- <button type="submit">Update Your Squad Name</button> -->
 <form method="POST" action="/users/yourSquad?_method=PUT">
-    <label for="update">New Name Here:</label>
-    <input id="update" type="text" name="teamName" placeholder="enter your new team name here" />
-    <input type="submit"/>
+    <label for="update">New Team Name Here:</label>
+    <input id="update" type="text" name="teamName" placeholder="enter new  name here" />
+    <input type="submit" class="btn btn-primary"/>
 </form>
 
 
@@ -14,14 +14,16 @@
         <p><%= player.team%></p>
         <p>Position: <%= player.position%></p>
         <form method="POST" action="/players/<%=player.id%>?_method=DELETE">
-             <button type="submit">Delete from Your Squad</button>
+             <button type="submit" class="btn btn-primary">Delete from Your Squad</button>
         </form>
     </div>
 <% }) %>
 
-<%comments.forEach(comment => { %>
-    <div>
-        <h4><%= comment.content %> </h4>
-        <p> -Team <%= comment.name%></p>
-    </div>
- <% }) %>
+<div id="comment-section">
+    <%comments.forEach(comment => { %>
+        <div>
+            <h4><%= comment.content %> </h4>
+            <p> -Team <%= comment.name%></p>
+        </div>
+     <% }) %>
+</div>

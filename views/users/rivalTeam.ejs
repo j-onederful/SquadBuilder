@@ -17,15 +17,22 @@
         </div>
      <% }) %>
      <!-- form to add new comment -->
-     <form method="POST" action="/users/<%=rivalId%>/comment">
-        <label for="content">Talk Some Shit:</label>
-        <input id="content" type="text" name="content" placeholder="enter comment here" />
-
-        <label for ="name">Enter Your Team Name Here:</label>
-        <input id="name" type="text" name="name" placeholder="enter name here" />
-
-        <button type="submit">Post Your Comment!</button>
-     </form>
+     <div>
+        <form method="POST" action="/users/<%=rivalId%>/comment">
+            
+            <div class="mb-3 mt-3">
+                <label for="content" class="form-label">Talk Some Shit:</label>
+                <input id="content" class="form-control" type="text" name="content" placeholder="enter comment here" />
+            </div>
+    
+            <div class="mb-3">
+                <label for ="name" class="form-label">Enter Your Team Name Here:</label>
+                <input id="name" class="form-control" type="text" name="name" placeholder="enter name here" />
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Post Your Comment!</button>
+         </form>
+     </div>
  </div>
 
  

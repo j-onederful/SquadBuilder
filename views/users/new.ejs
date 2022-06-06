@@ -6,15 +6,23 @@
 <%}%>
 
 
-<form action="/users" method="POST">
-    <label for="teamName">Team Name:</label>
-    <input id="teamName" type="teamName" name="teamName" placeholder="enter your Team's Name" required/>
-
-    <label for="email">Email:</label>
-    <input id="email" type="email" name="email" placeholder="enter your email..." required/>
-
-    <label for="password">Password:</label>
-    <input id="password" type="password" name="password" placeholder="enter your password" required/>
-
-    <button type="submit">Sign Up!</button>
-</form>
+<div class="container">
+    <form action="/users" method="POST">
+        <div class="mb-3 mt-3">
+            <label for="teamName" class="form-label">Team Name:</label>
+            <input id="teamName" class="form-control" type="teamName" name="teamName" placeholder="enter team name" required/>
+        </div>
+    
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input id="email" class="form-control" type="email" name="email" placeholder="enter your email" required/>
+        </div>
+    
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input id="password" class="form-control" type="password" name="password" placeholder="enter your password" required/>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Sign Up!</button>
+    </form>
+</div>

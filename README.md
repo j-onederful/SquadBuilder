@@ -1,12 +1,14 @@
 # __Squad Builder__
  
  ### Installation Instructions:
-  N/A
+  Click Link to go to site:
+  https://git.heroku.com/squad-builder-425.git
+
  ---
  
  ### What's happenin
  ---
- This app will use the ballislife API (https://www.balldontlie.io/#introduction) to give user the ability to search through all current NBA players in order to find season stats, height, weight, position and a few other stats, in addition to a picture of the player. On the player profile page, user will have the ability to add player to their team, depending on what positions they have already drafted for, pretty much in the format of an NBA fantasy league. Once user teams have been created, there will be a comment section below each team where other users can make comments like in the blog lab that we had. Users will be able to delete players from their teams and add new ones as they please.
+ This app will use the ballislife API (https://www.balldontlie.io/#introduction) to give user the ability to search through all NBA players in order to find team and position. On the player profile page, user will have the ability to add player to their team in the format of an NBA fantasy league. Once user teams have been created, there will be a comment section below each team where other users can make comments like in the blog lab that we had. Users will be able to delete players from their teams and add new ones as they please.
  
  ### User Stories
  ---
@@ -16,15 +18,27 @@
 
  ### Approach
  ---
- N/A
+ Began by getting all of my RESTful routes sorted out, tackling one model at a time. Then went on to some styling but still needs some work in that department. 
  
  ### Tech Used
  ---
- N/A
+ Used:
+ * npm
+ * axios
+ * bcrypt
+ * cryptjs
+ * express
+ * ejs
+ * express-ejs-layouts
+ * method override
+ * css
+ * html
+ * bootstrap
+ * dotenv
 
  ### Reflection
  ---
- N/A
+ Was feeling imposter syndrome quite a lot at the beginning of this project but towards the end of last week I started to gain a better understanding of how to make my CRUD routes function correctly. Still not great at styling so will need to put more effort into learning that.
 
 
  ![wireframe](./img/login-wireframe.jpg)
