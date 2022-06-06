@@ -1,10 +1,14 @@
 # __Squad Builder__
  
- ### Installation Instructions:
-  Click Link to go to site:
+ Click Link to go to site:
   https://squad-builder-425.herokuapp.com/
 
- ---
+ ### Installation Instructions:
+ * Fork and Clone this repository
+ * npm i to install dependencies
+ * Need a env file to store your ENC_KEY for password
+ * Nodemon to run the application(localhost:3000)
+ * This application uses ballislife API (API key not required)
  
  ### What's happenin
  ---
