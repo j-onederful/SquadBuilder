@@ -2,7 +2,7 @@
  
  ### Installation Instructions:
   Click Link to go to site:
-  https://git.heroku.com/squad-builder-425.git
+  https://squad-builder-425.herokuapp.com/
 
  ---
  
