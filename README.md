@@ -5,9 +5,10 @@
 
  ### Installation Instructions:
  * Fork and Clone this repository
- * npm i to install dependencies
- * Need a env file to store your ENC_KEY for password
- * Nodemon to run the application(localhost:3000)
+ * npm i to install dependencies in local directory where you have cloned
+ * Create a .env file to store your ENC_KEY for password (add whatever string you'd like)
+ * Run sequelize db:migrate
+ * Run nodemon to run the application(use localhost:3000 in web browser)
  * This application uses ballislife API (API key not required)
  
  ### What's happenin
